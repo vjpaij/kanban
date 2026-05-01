@@ -10,7 +10,6 @@ import {
   useSensor,
   useSensors,
   DragStartEvent,
-  DragOverEvent,
   DragEndEvent,
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
@@ -39,14 +38,6 @@ export default function KanbanBoard() {
     setActiveCardId(active.id as string);
   };
 
-  const handleDragOver = (event: DragOverEvent) => {
-    const { over } = event;
-    if (!over) return;
-
-    // Moving between columns
-    // We can handle logic here if we were doing sorting, but for simplicity we'll handle drop in dragEnd
-  };
-
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     setActiveCardId(null);
@@ -70,7 +61,6 @@ export default function KanbanBoard() {
         sensors={sensors}
         collisionDetection={closestCorners}
         onDragStart={handleDragStart}
-        onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
         <div className="board-columns">

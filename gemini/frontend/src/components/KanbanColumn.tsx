@@ -66,7 +66,13 @@ export default function KanbanColumn({ column, cards }: Props) {
             />
           </form>
         ) : (
-          <div className="column-title-group" onClick={() => setIsEditing(true)}>
+          <div 
+            role="button" 
+            tabIndex={0} 
+            className="column-title-group" 
+            onClick={() => setIsEditing(true)}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsEditing(true); }}
+          >
             <h2 className="column-title">{column.title}</h2>
             <div className="column-badge">{cards.length}</div>
           </div>
@@ -99,7 +105,11 @@ export default function KanbanColumn({ column, cards }: Props) {
           />
           <div className="add-card-actions">
             <button type="submit" className="btn-primary">Add</button>
-            <button type="button" className="btn-cancel" onClick={() => setIsAddingCard(false)}>Cancel</button>
+            <button type="button" className="btn-cancel" onClick={() => {
+              setIsAddingCard(false);
+              setNewCardTitle("");
+              setNewCardDetails("");
+            }}>Cancel</button>
           </div>
         </form>
       ) : (

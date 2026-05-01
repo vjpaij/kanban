@@ -57,10 +57,8 @@ export function KanbanProvider({ children }: { children: React.ReactNode }) {
   };
 
   const addCard = (columnId: string, title: string, details: string) => {
-    // Generate simple ID instead of full UUID for this simple MVP without external dependencies if possible
-    // Wait, I didn't install UUID, I'll just use simple Math.random() or Date.now() to avoid extra deps.
     const newCard: Card = {
-      id: `card-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      id: crypto.randomUUID(),
       title,
       details,
       columnId,

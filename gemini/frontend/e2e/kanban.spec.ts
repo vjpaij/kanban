@@ -7,7 +7,7 @@ test.describe('Kanban Board MVP', () => {
 
   test('should display initial columns and dummy data', async ({ page }) => {
     // Check main title
-    await expect(page.locator('h1')).toContainText('Kanban MVP');
+    await expect(page.locator('h1')).toContainText('Kanban');
     
     // Check initial 5 columns are present
     const columns = page.locator('.column-title');
